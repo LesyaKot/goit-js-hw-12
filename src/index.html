@@ -4,21 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
+    <title>goit-js-hw-12</title>
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <load ="partials/header.html" />
+    <form class="btn-section" autocomplete="off">
+      <input type="text" id="data-search" />
+      <button type="submit" data-start>Search</button>
+    </form>
 
-    <section>
-      <h1>Example page title</h1>
-      <!-- Path to images as from index.html file -->
-      <img src="./img/javascript.svg" alt="" />
-    </section>
+    <div class="loader"></div>
 
-    <!-- Loads the specified .html file -->
-    <load ="partials/vite-promo.html" />
-
+    <ul class="gallery"></ul>
+    
+    <script type="module" src="./js/pixabay-api.js"></script>
+    <script type="module" src="./js/render-functions.js"></script>
     <script type="module" src="./main.js"></script>
   </body>
 </html>
