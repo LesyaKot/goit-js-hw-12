@@ -1,4 +1,3 @@
-// export default axios;
 export function createMarkup(images) {
   const gallery = document.querySelector('.gallery');
 

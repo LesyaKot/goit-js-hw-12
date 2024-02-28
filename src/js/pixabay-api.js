@@ -1,4 +1,4 @@
-// export default axios;
+import axios from 'axios';
 export async function getImagesFromPixabay(query, perPage, page) {
   const KEY = '42468615-7a21ca39eb8f796f5c09d98b3';
   const BASE_URL = 'https://pixabay.com/api/';
@@ -8,12 +8,7 @@ export async function getImagesFromPixabay(query, perPage, page) {
 
   const LINK = `${BASE_URL}?key=${KEY}&q=${query}&image_type=${IMAGE_TYPE}&orientation=${ORIENTATION}&safesearch=${SAFESEARCH}&per_page=${perPage}&page=${page}`;
 
-  const response = await fetch(LINK);
+  const response = await axios.get(LINK);
 
-  if (!response.ok) {
-    throw new Error('Image error!');
-  }
-
-  const data = await response.json();
-  return data;
+  return response.data;
 }
