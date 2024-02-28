@@ -1,7 +1,8 @@
+// export default axios;
 export function createMarkup(images) {
   const gallery = document.querySelector('.gallery');
 
-  gallery.innerHTML = images
+  return images
     .map(
       ({
         webformatURL,

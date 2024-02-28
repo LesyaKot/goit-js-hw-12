@@ -47,22 +47,26 @@ button {
   gap: 20px;
 }
 
-.loadMoreBtn {
-  display: none;
-  visibility: hidden;
-}
-.loadMoreBtn-visible {
-  display: block;
-}
-
-@import '~css-loader/dist/style.css';
-
-.loader {
-  display: none;
+.load-more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 12px;
 }
 
-.loader-visible {
-  display: block;
+.is-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
 
 .loader {
