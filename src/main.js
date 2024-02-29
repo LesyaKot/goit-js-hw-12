@@ -76,6 +76,18 @@ async function handleFormSubmit(event) {
   }
 }
 
+// const galleryItemHeight = 200;
+
+  function smoothScroll() {
+    const galleryItem = document.querySelector('.gallery-item'); 
+    const galleryItemHeight = galleryItem.getBoundingClientRect().height;
+
+    window.scrollBy({
+        top: galleryItemHeight * 2,
+        behavior: 'smooth'
+    });
+}
+
 async function handleLoadMore() {
   loader.classList.add('is-hidden');
   currentPage += 1;
@@ -106,10 +118,16 @@ async function handleLoadMore() {
       });
     } else {
       loadMoreBtn.classList.remove('is-hidden');
+      smoothScroll()
     }
+    
   } catch (error) {
     console.error('Error fetching more images:', error);
   } finally {
     loader.classList.add('is-hidden');
   }
 }
+
+
+
+

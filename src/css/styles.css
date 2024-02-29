@@ -8,10 +8,17 @@
 @import url('./vite-promo.css');
 @import url('./header.css');
 
+.galleryItem{
+  height: 200px;
+}
+
 img {
   display: flex;
   flex-wrap: wrap;
   margin-top: 24px;
+  width: 360px;
+  height: 200px;
+
 }
 .btn-section {
   margin-bottom: 24px;
