@@ -89,10 +89,16 @@ async function handleLoadMore() {
 
     const lastPage = Math.ceil(dataImages.totalHits / perPage);
     gallery.innerHTML = createMarkup(dataImages.hits);
+    
     lightbox.refresh();
 
     if (lastPage === currentPage) {
       loadMoreBtn.classList.add('is-hidden');
+
+      //   alert("We're sorry, but you've reached the end of search results.");
+
+      // console.log("We're sorry, but you've reached the end of search results.");
+
       iziToast.info({
         title: 'Info',
         message:
