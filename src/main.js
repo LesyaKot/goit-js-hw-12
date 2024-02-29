@@ -5,6 +5,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import axios from 'axios';
+axios.defaults.baseURL = 'https://pixabay.com/api/';
 
 const form = document.querySelector('.btn-section');
 const input = document.querySelector('#data-search');
@@ -12,13 +13,10 @@ const button = document.querySelector('[data-start]');
 const gallery = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
 const loadMoreBtn = document.querySelector('.load-more-btn');
-
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
-
-axios.defaults.baseURL = 'https://pixabay.com/api/';
 
 let currentPage = 1;
 const perPage = 15;
@@ -58,7 +56,6 @@ async function handleFormSubmit(event) {
       });
     } else {
       gallery.innerHTML = createMarkup(dataImages.hits);
-
       lightbox.refresh();
       loadMoreBtn.classList.remove('is-hidden');
       if (dataImages.hits.length < 15) {
@@ -76,16 +73,14 @@ async function handleFormSubmit(event) {
   }
 }
 
-// const galleryItemHeight = 200;
+function smoothScroll() {
+  const galleryItem = document.querySelector('.gallery-item');
+  const galleryItemHeight = galleryItem.getBoundingClientRect().height;
 
-  function smoothScroll() {
-    const galleryItem = document.querySelector('.gallery-item'); 
-    const galleryItemHeight = galleryItem.getBoundingClientRect().height;
-
-    window.scrollBy({
-        top: galleryItemHeight * 2,
-        behavior: 'smooth'
-    });
+  window.scrollBy({
+    top: galleryItemHeight * 2,
+    behavior: 'smooth',
+  });
 }
 
 async function handleLoadMore() {
@@ -98,19 +93,13 @@ async function handleLoadMore() {
       perPage,
       currentPage
     );
-
     const lastPage = Math.ceil(dataImages.totalHits / perPage);
-    gallery.innerHTML = createMarkup(dataImages.hits);
-    
+    gallery.insertAdjacentHTML('beforeend', createMarkup(dataImages.hits));
+    smoothScroll();
     lightbox.refresh();
 
     if (lastPage === currentPage) {
       loadMoreBtn.classList.add('is-hidden');
-
-      //   alert("We're sorry, but you've reached the end of search results.");
-
-      // console.log("We're sorry, but you've reached the end of search results.");
-
       iziToast.info({
         title: 'Info',
         message:
@@ -118,16 +107,10 @@ async function handleLoadMore() {
       });
     } else {
       loadMoreBtn.classList.remove('is-hidden');
-      smoothScroll()
     }
-    
   } catch (error) {
     console.error('Error fetching more images:', error);
   } finally {
     loader.classList.add('is-hidden');
   }
 }
-
-
-
-
