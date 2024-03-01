@@ -39,6 +39,8 @@ async function handleFormSubmit(event) {
     return;
   }
 
+  currentPage = 1;
+
   loader.classList.remove('is-hidden');
 
   try {
@@ -94,8 +96,11 @@ async function handleLoadMore() {
       currentPage
     );
     const lastPage = Math.ceil(dataImages.totalHits / perPage);
+
     gallery.insertAdjacentHTML('beforeend', createMarkup(dataImages.hits));
+
     smoothScroll();
+
     lightbox.refresh();
 
     if (lastPage === currentPage) {
