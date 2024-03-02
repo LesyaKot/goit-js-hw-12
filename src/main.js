@@ -86,8 +86,8 @@ function smoothScroll() {
 }
 
 async function handleLoadMore() {
-//   loader.classList.add('is-hidden');
-loader.classList.add('is-hidden');
+ 
+  loader.classList.add('is-hidden');
 
   currentPage += 1;
 
